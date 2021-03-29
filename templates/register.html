@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+   <!-- <form action="/register" method="post">
+        <input type='text' name='username' placeholder='Choose a username'>
+        <input type='text' name='password' placeholder='Choose a password'>
+        <input type='text' name='confirmation' placeholder='Confirm your password'>
+        <button class="btn" type='submit'> submit </button>
+    </form> -->
+    
+    <form action="/register" method="post">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name='username' class="form-control"><br>
+      
+      
+        <label for="cassword">Password</label>
+        <input type="text" name='password' class="form-control" ><br>
+      
+      
+        <label for="confirmation-password">Confirm password</label>
+        <input type="text" name='confirmation' class="form-control" ><br>
+
+        <button class="btn" type='submit'> submit </button>
+      </div>
+    </form>
+
+{% endblock %}  
