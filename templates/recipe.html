@@ -39,7 +39,7 @@
     <button id="add" class="btn second" onclick="add_row()"> Add </button>
 <div class="bs-bars float-left">
 <div id="toolbar">
-    <button id="remove" class="btn fourth" onclick="removeRow(-1)">Delete </button>
+    <button id="remove" class="btn fourth" onclick="remove()">Delete </button>
 </div>
 </div>
 </div>
@@ -62,12 +62,23 @@
                 if (lastRow > 3) tbl.deleteRow(lastRow - 1);
             }
                 
+            function remove() {
+                var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                var i=aObj.length; 
+                while(i--) { 
+                    if(aObj[i].getElementsByTagName('input')[0].checked) {
+                        aObj[i].parentNode.removeChild(aObj[i]);
+        }
+	}
+}
+            
         </script>
+        
 
         <thead >
             <tr>
                 <div class="fht-cell"></div>
-                <th class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; " rowspan="2" data-field="state">
+                <th class="bs-checkbox deleteBtn'" style="text-align: center; vertical-align: middle; width: 36px; " rowspan="2" data-field="state">
                     <div class="th-inner ">
                         <input name="btSelectAll" type="checkbox">
                             
