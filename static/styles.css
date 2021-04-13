@@ -35,7 +35,9 @@ main
 {
     /* scroll horizontally as needed */
     overflow-x: auto;
-
+    
+    
+     
     /* center contents */
     text-align: center;
     }
@@ -58,7 +60,7 @@ input {
 label {
     margin-top:3%;
     display: block;
-    }
+}
 
 .first {background-color:#264653;}
 .second {background-color:#2a9d8f;}
@@ -68,9 +70,14 @@ label {
 .cookbook {color:#e76f51}
 
 .ae{
-    position : fixed;
+    position : absolute;
     top : 15%;
     right : 30%;
+}
+.aa{
+    position : fixed;
+    top : 10%;
+    right : 20%;
 }
 .son{
     position:relative;
@@ -81,4 +88,3 @@ label {
     position:absolute;
 }
 
-table.fixed { table-layout:fixed; }

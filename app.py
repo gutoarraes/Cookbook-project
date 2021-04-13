@@ -2,7 +2,11 @@ import os
 import datetime
 import sqlite3
 import mysql.connector
+import json
 
+from urllib.request import urlopen  
+from xml.etree import ElementTree
+from lxml import etree
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_session import Session
@@ -58,19 +62,23 @@ if mydb.is_connected():
         print("You're connected to database: ", record)
 
 
-# Make sure API key is set
-# if not os.environ.get("API_KEY"):
-#   raise RuntimeError("API_KEY not set")
-
-
 @app.route("/")
 @login_required
 def index():
     """Show current recipes"""
-    if request.method == "GET":
-        return render_template("index.html")
-    else:
-        return apology("TODO", code=400)
+    # username = session["user_id"]
+    # query_database = "SELECT * FROM users WHERE id = %s or id = %s"
+    # values = (username, username)
+    # recipes = mycursor.execute(query_database, values)
+    # mydb.commit()
+
+    # sql = "INSERT INTO recipes (id, recipe_name, ingredients, preparation) VALUES (%s, %s, %s, %s)"
+    # val = (id, recipe_name, ingredients, preparation)
+    # mycursor.execute(sql, val)
+    # mydb.commit()
+
+    return render_template("index.html") #, recipes=recipes
+    
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -96,14 +104,14 @@ def login():
         mycursor.execute(query, (username, username))
         rows = mycursor.fetchone()
         #print(rows)  
-        print(rows[0])  # user id
-        print(rows[1])  # login
-        print(rows[2])  # password hash  
+        # print(rows[0])  # user id
+        # print(rows[1])  # login
+        # print(rows[2])  # password hash  
         password = request.form.get("password")  
         novo_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8) 
-        #print(len(rows))   
-        print(novo_hash)
-        print(check_password_hash(rows[2], request.form.get("password")))       
+        # print(len(rows))   
+        # print(novo_hash)
+        # print(check_password_hash(rows[2], request.form.get("password")))       
             
         # Ensure username exists and password is correct
         if len(rows) == 0 or not check_password_hash(rows[2], password):
@@ -127,7 +135,48 @@ def recipe():
     if request.method == "GET":
         return render_template("recipe.html")
     else:
-        return apology("TODO", code=400)
+        # add to table "recipe" on database the new recipe (title, JSON of ingredients, preparation)
+        recipe_title = request.form.get("title")
+        ingredients = request.form.get("username")
+        preparation = request.form.get("preparation")
+        
+        url = "http://127.0.0.1:5000/recipe"
+        page = urlopen(url)
+        html_bytes = page.read()
+        html = html_bytes.decode("utf-8")
+        table = html.find("tbody")
+        print(table)
+        table2 = html.find("tr")
+        print(table2)
+        table3 = html.find("Ingredients")
+        print(table3)
+        table4 = html.find("<table>")
+        print(table4)
+
+        # hash_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        # sql = "INSERT INTO recipes (recipe_title, ingredients, preparation) VALUES (%s, %s, %s)"
+        # val = (recipe_title, ingredients, preparation)
+        # mycursor.execute(sql, val)
+        # mydb.commit()
+
+        # html_file = open("templates/recipe.html")
+        # html_content = html_file.read()
+        # parsed_html = etree.HTML(html_content)
+        # print(html_content)
+        # html_tables = parsed_html.findall("table/tbody")
+        # html_content3 = parsed_html.findall("table")
+        # html_content4 = parsed_html.find('tbody')
+        # print(html_content3)
+        # print(html_content4)
+        
+        # first_table = html_tables[0]
+        # table_as_list = list(first_table)
+        # table_headers = [col.text for col in table_as_list[0]]
+        # table_list_dict = [dict(zip(table_headers, [col.text for col in row])) for row in table_as_list[1:]]
+        # print(table_list_dict)
+        
+        
+        return redirect("index.html")
 
 
 @app.route("/logout")

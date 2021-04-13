@@ -5,121 +5,84 @@
 {% endblock %}
 
 {% block main %}
-<button type="button" onclick="location.href='/'" class="fourth btn btn-lg ae">Cancel</button>
-<form style="text-align: left;">
+<button type="button" onclick="location.href='/'" class="fourth btn btn-lg aa">Cancel</button>
+<form name="title" style="text-align: left;">
     <div class="form-group">
-        <p class="h2" style="margin-bottom:2%">Recipe title</p>
+        <p class="h2" style="margin-bottom:2%; margin-top:-5%">Recipe title</p>
         <textarea rows="1" cols="55" style="resize: none" class="form-control" id="exampleFormControlTextarea1" maxlength="94"></textarea>
     </div>
-
-    <div style="display: inline-block;">
-    <img src="/static/sweet.jpg"> 
-
-    <div class="custom-control custom-radio custom-control-inline son" style="margin-top: 1%; display: inline;" >
-        <input type="radio"  id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline1">Sweet</label>
-    </div>
-</div>
-<div style="display: inline-block;">
-    <img src="/static/savory.jpg">
-    <div class="custom-control custom-radio custom-control-inline son" style="margin-top: 1%; display: inline;">
-        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline2">Savory</label>
-    </div>
-</div>
 </form>
+
 <div style="text-align: left;">
     <p class="h2" style="margin-top:2%">Ingredients</p>
 </div>
 
 <div class="bootstrap-table bootstrap4" style="text-align: left;">
-<div class="fixed-table-toolbar" style="text-align: left;">
-<div class="bs-bars float-left" style="text-align: left;">
-<div id="toolbar">
-    <button id="add" class="btn second" onclick="add_row()"> Add </button>
-<div class="bs-bars float-left">
-<div id="toolbar">
-    <button id="remove" class="btn fourth" onclick="remove()">Delete </button>
-</div>
-</div>
-</div>
-</div>
-
-</div>
+    <div class="fixed-table-toolbar" style="text-align: left;"></div>
+    <div id="toolbar">
+        <button id="add" class="btn second" onclick="add_row()"> Add </button>
+        <div class="bs-bars float-left">
+            <div id="toolbar">
+                <button id="remove" class="btn fourth" onclick="remove()">Delete </button>
+            </div>
+        </div>
+    </div>
 </div>
     
-</div>
+<form action="/recipe" method="post">
     <table id="table" data-toolbar="#toolbar" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-id-field="id"  class="table table-bordered table-hover fixed">
-
-        <script>
-            function add_row() {
-            $(table).find('tbody').append('<tr data-index="0" data-has-detail-view="true"><td class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; "><input data-index="0" name="btSelectItem" type="checkbox" value=""></td><td contenteditable style="text-align: center; vertical-align: middle; "></td><td contenteditable style="text-align: center; "></td></tr>');
-            } 
-            
-            function removeRow(rows){
-                var tbl = document.getElementById('table');
-                var lastRow = tbl.rows.length;
-                if (lastRow > 3) tbl.deleteRow(lastRow - 1);
-            }
-                
-            function remove() {
-                var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                var i=aObj.length; 
-                while(i--) { 
-                    if(aObj[i].getElementsByTagName('input')[0].checked) {
-                        aObj[i].parentNode.removeChild(aObj[i]);
-        }
-	}
-}
-            
-        </script>
-        
-
-        <thead >
+        <thead>
             <tr>
                 <div class="fht-cell"></div>
-                <th class="bs-checkbox deleteBtn'" style="text-align: center; vertical-align: middle; width: 36px; " rowspan="2" data-field="state">
-                    <div class="th-inner ">
-                        <input name="btSelectAll" type="checkbox">
-                            
-                        
-                    </div>
-                    <div class="fht-cell"></div>
+                <th style="text-align: center; vertical-align: middle"></th>
+                <th style="text-align: center; vertical-align: middle">
+                    <div  class="th-inner sortable ">Ingredient</div>
                 </th>
-                <th style="text-align: center; vertical-align: middle; " rowspan="2" data-field="id">
-                    <div  class="th-inner sortable both desc">Ingredient</div>
-                    <div class="fht-cell"></div>
-                </th>
+                <th style="text-align: center; " data-field="name" data-not-first-th="">
+                    <div class="th-inner sortable both">Quantity</div>
                     <div class="fht-cell"></div>
                 </th>
             </tr>
-        
-        <tr>
-            <th style="text-align: center; " data-field="name" data-not-first-th="">
-                <div class="th-inner sortable both">Quantity</div>
-                <div class="fht-cell"></div>
-            </th>
-        </tr>
-    </thead>
+        </thead>
     <tbody>
         <tr data-index="0" data-has-detail-view="true">
-            <td class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; "><label>
-          <input data-index="0" name="btSelectItem" type="checkbox" value="">
-          <span></span>
-          </label>
-        </td>
-        <td contenteditable style="text-align: center; vertical-align: middle; ">Flour</td>
-        <td contenteditable style="text-align: center; ">200g</td>
-    </tr>
+            <td class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; ">
+                <label>
+                    <input data-index="0" name="btSelectItem" type="checkbox" value="">
+                    <span></span>
+                </label>
+            </td>
+            <td contenteditable style="text-align: center; vertical-align: middle; ">Flour</td>
+            <td contenteditable style="text-align: center; ">200g</td>
+        </tr>
     
-</table>
 <div class="fixed-table-border" style="width: 100%; "></div>
 </div>
-              
+
+<script>
+    function add_row() {
+    $(table).find('tbody').append('<tr data-index="0" data-has-detail-view="true"><td class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; "><input data-index="0" name="btSelectItem" type="checkbox" value=""></td><td contenteditable style="text-align: center; vertical-align: middle; "></td><td contenteditable style="text-align: center; "></td></tr>');
+    }
+
+    function remove() {
+        var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        var i=aObj.length; 
+        while(i--) { 
+            if(aObj[i].getElementsByTagName('input')[0].checked) {
+                aObj[i].parentNode.removeChild(aObj[i]);
+            }
+        }
+    }       
+</script>
+
+</table>            
     <p class="h2" style="text-align: left;">Preparation</p>
-        <div class="form-group" style="text-align: left;">
+        <div class="form-group" name="preparation" style="text-align: left;">
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="13" cols="140"></textarea>
         </div> 
+        </tbody>
+        
+        <button type="submit" class="btn second btn-lg" >Submit</button>
 
-        <button type="button" onclick="location.href='/'" class="btn second btn-lg">Submit</button>
+        </form>
 {% endblock %}
