@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+  
+<button type="button" onclick="location.href='/recipe'" class="btn second btn-lg">New recipe</button>
+<br>
+<div class="accordion" id="accordionExample">
+
+    {% for recipe in recipes %}
+    
+  <br>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading{{ loop.index }}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" data-target="#ElementToExpandOnClick" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+           {{ recipe[1] }} 
+        </button>
+      </h2>
+      <div id="collapse{{ loop.index }}" class="accordion-collapse collapse collapsed" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Ingredients: </strong>
+          {% set list1 = recipe[2].split('\r\n') %}
+            {% for item in list1 %}
+                <br>{{ item }}
+            {% endfor %}
+
+        </div>
+      </div>
+      <br>
+      <div id="collapse{{ loop.index }}" class="accordion-collapse collapse collapsed" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong> Preparation: </strong>
+          {% set list2 = recipe[3].split('\r\n') %}
+            {% for item in list2 %}
+                <br>{{ item }}
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+  
+  {% endfor %}
+
+</div>
+
+{% endblock %}
