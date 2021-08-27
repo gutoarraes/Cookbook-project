@@ -6,6 +6,7 @@
 
 {% block main %}
 <button type="button" onclick="location.href='/'" class="fourth btn btn-lg aa">Cancel</button>
+<<<<<<< HEAD
 
 <form action="/recipe" method="post" style="text-align: left;">
     <div class="form-group">
@@ -76,10 +77,80 @@
 
     }
 
+=======
+<form name="title" style="text-align: left;">
+    <div class="form-group">
+        <p class="h2" style="margin-bottom:2%; margin-top:-5%">Recipe title</p>
+        <textarea rows="1" cols="55" style="resize: none" class="form-control" id="exampleFormControlTextarea1" maxlength="94"></textarea>
+    </div>
+</form>
+
+<div style="text-align: left;">
+    <p class="h2" style="margin-top:2%">Ingredients</p>
+</div>
+
+<div class="bootstrap-table bootstrap4" style="text-align: left;">
+    <div class="fixed-table-toolbar" style="text-align: left;"></div>
+    <div id="toolbar">
+        <button id="add" class="btn second" onclick="add_row()"> Add </button>
+        <div class="bs-bars float-left">
+            <div id="toolbar">
+                <button id="remove" class="btn fourth" onclick="remove()">Delete </button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<form action="/recipe" method="post">
+    <table id="table" data-toolbar="#toolbar" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-id-field="id"  class="table table-bordered table-hover fixed">
+        <thead>
+            <tr>
+                <div class="fht-cell"></div>
+                <th style="text-align: center; vertical-align: middle"></th>
+                <th style="text-align: center; vertical-align: middle">
+                    <div  class="th-inner sortable ">Ingredient</div>
+                </th>
+                <th style="text-align: center; " data-field="name" data-not-first-th="">
+                    <div class="th-inner sortable both">Quantity</div>
+                    <div class="fht-cell"></div>
+                </th>
+            </tr>
+        </thead>
+    <tbody>
+        <tr data-index="0" data-has-detail-view="true">
+            <td class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; ">
+                <label>
+                    <input data-index="0" name="btSelectItem" type="checkbox" value="">
+                    <span></span>
+                </label>
+            </td>
+            <td contenteditable style="text-align: center; vertical-align: middle; ">Flour</td>
+            <td contenteditable style="text-align: center; ">200g</td>
+        </tr>
+    
+<div class="fixed-table-border" style="width: 100%; "></div>
+</div>
+
+<script>
+    function add_row() {
+    $(table).find('tbody').append('<tr data-index="0" data-has-detail-view="true"><td class="bs-checkbox " style="text-align: center; vertical-align: middle; width: 36px; "><input data-index="0" name="btSelectItem" type="checkbox" value=""></td><td contenteditable style="text-align: center; vertical-align: middle; "></td><td contenteditable style="text-align: center; "></td></tr>');
+    }
+
+    function remove() {
+        var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        var i=aObj.length; 
+        while(i--) { 
+            if(aObj[i].getElementsByTagName('input')[0].checked) {
+                aObj[i].parentNode.removeChild(aObj[i]);
+            }
+        }
+    }       
+>>>>>>> 9eff7feb08c991945b6bae7e89203dd73ba29b9d
 </script>
 
 </table>            
     <p class="h2" style="text-align: left;">Preparation</p>
+<<<<<<< HEAD
 
     <div class="form-group" style="text-align: left;">
         <textarea class="form-control" id="preparation" name="preparation" rows="13" cols="140"></textarea>
@@ -88,4 +159,14 @@
     <button type="submit" id="submit" class="btn second btn-lg" onclick="submit_message();">Submit</button>
 
 </form>
+=======
+        <div class="form-group" name="preparation" style="text-align: left;">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="13" cols="140"></textarea>
+        </div> 
+        </tbody>
+        
+        <button type="submit" class="btn second btn-lg" >Submit</button>
+
+        </form>
+>>>>>>> 9eff7feb08c991945b6bae7e89203dd73ba29b9d
 {% endblock %}

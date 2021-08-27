@@ -53,10 +53,13 @@ input {
     margin-left: auto;
     display: block;
     text-align: center;
+<<<<<<< HEAD
     width: 100%;
     padding: 10px;
     margin: 0px;
     
+=======
+>>>>>>> 9eff7feb08c991945b6bae7e89203dd73ba29b9d
 }
 .form-group{
     margin-top:2%;
