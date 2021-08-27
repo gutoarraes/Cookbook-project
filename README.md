@@ -1,5 +1,4 @@
 # Cookbook
-<<<<<<< HEAD
 
 ###### Video demo:
 Please watch my YouTube demonstration of the [Cookbook](https://youtu.be/ROCB1KSDkc0)
@@ -41,6 +40,3 @@ Database - There are 2 tables on my database, *users* (id, username, hash) and *
 
 ###### Thanks
 Please check out the [CS50 Introduction to computer science](https://cs50.harvard.edu/x/2021/) course on Edx. 
-=======
-Final project of the Harvard's Introduction to computer science's course
->>>>>>> 9eff7feb08c991945b6bae7e89203dd73ba29b9d
