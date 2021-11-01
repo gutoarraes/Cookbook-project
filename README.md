@@ -22,16 +22,16 @@ Finally, I will host this web app on Heroku for anyone who wishes to access it.
 7. Heroku (hosting)
 
 ###### pages
-Apology.html - In case something goes wrong, this apology page will display a message and the error code
-Index.html - First page after a successful login (aka Homepage)
-Layout.html - In the flask framework, the Layout page allows other pages to extend from it and bring all the elements in it to themselves without having to be copied every time
-Login.html - First page on the website where the user will be prompted to log in
-Recipe.html - This is the page where the user will add a new recipe. I worked for a long time on it while I tried to have the user input the ingredients and their respective quantities in a dynamic table.
+- Apology.html - In case something goes wrong, this apology page will display a message and the error code
+- Index.html - First page after a successful login (aka Homepage)
+- Layout.html - In the flask framework, the Layout page allows other pages to extend from it and bring all the elements in it to themselves without having to be copied every time
+- Login.html - First page on the website where the user will be prompted to log in
+- Recipe.html - This is the page where the user will add a new recipe. I worked for a long time on it while I tried to have the user input the ingredients and their respective quantities in a dynamic table.
     I managed to create the table using JavaScript funcions, but I coulnd't make work the capture of the information with Ajax or Python itself, so I switched to a textarea
-Register.html - Page where the user would create a new username and password for themselves
-app.py - Where all the functionatility is stored (user validation, connection with database and updating/retrieving of such database)
-Helpers.py - file created by the CS50 staff to help with previous project, but I took advantage of its functionality on this one as well 
-Database - There are 2 tables on my database, *users* (id, username, hash) and *recipes* (user = users.id, recipe_name, recipe_title, preparation)
+- Register.html - Page where the user would create a new username and password for themselves
+- app.py - Where all the functionatility is stored (user validation, connection with database and updating/retrieving of such database)
+- Helpers.py - file created by the CS50 staff to help with previous project, but I took advantage of its functionality on this one as well 
+- Database - There are 2 tables on my database, *users* (id, username, hash) and *recipes* (user = users.id, recipe_name, recipe_title, preparation)
 
 ###### Next steps
 - [ ] Add button to delete or edit a recipe
